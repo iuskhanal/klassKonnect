@@ -20,7 +20,7 @@ It allows teachers to post announcements and upload lecture materials while enab
 | **Saif Ullah** | Team Lead, Quality Engineer, Core Developer | ksaif3365@gmail.com |
 | **Rumman Khurram** | Project Lead, Associate Core Developer | mechatronicsengineer929@gmail.com |
 | **Emmanuel Kimeli** | Project Manager, Firebase Admin | kimeliemmanuel21@gmail.com |
-| **Aayush Khana** | UI/UX Lead, Frontend Widget Designer | khanal.aayush.ak@gmail.com |
+| **Aayush Khanal** | UI/UX Lead, Frontend Widget Designer | khanal.aayush.ak@gmail.com |
 | **Gaurika Gautam** | Project Scribe, API/Data Structuring Assistant | 24cse018@gweca.ac.in |
 
 ---
