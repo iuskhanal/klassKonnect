@@ -89,7 +89,7 @@ class KlassKonnectApp extends StatelessWidget {
             initialRoute: '/signin',
             routes: {
               '/signin': (ctx) => const SigninScreen(),
-              '/signup': (ctx) =>const SignupScreen(),
+              '/signup': (ctx) =>const  SignUpScreen(),
               '/forget': (ctx) =>const ForgetPasswordScreen(),
               '/main_home': (ctx) =>const MainHome(userName :"User"),
 
