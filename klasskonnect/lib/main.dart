@@ -86,6 +86,14 @@ class KlassKonnectApp extends StatelessWidget {
               primarySwatch: Colors.teal,
               useMaterial3: true,
             ),
+            initialRoute: '/signin',
+            routes: {
+              '/signin': (ctx) => const SigninScreen(),
+              '/signup': (ctx) =>const SignupScreen(),
+              '/forget': (ctx) =>const ForgetPasswordScreen(),
+              '/main_home': (ctx) =>const MainHome(userName :"User"),
+
+            },
           );
         },
       ),
