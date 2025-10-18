@@ -5,6 +5,9 @@ class LecturesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: const Text('Lectures')),
+      body: const Center(child: Text('All lectures will be shown here')),
+    );
   }
 }

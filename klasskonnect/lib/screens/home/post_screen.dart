@@ -5,6 +5,9 @@ class PostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: const Text('Posts')),
+      body: const Center(child: Text('Posts / Feed will be shown here')),
+    );
   }
 }

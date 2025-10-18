@@ -28,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final email = _emailCtrl.text.trim();
     final pass = _passCtrl.text;
 
-    final ok = AuthServices.register(
+    final ok = AuthService.register(
       name: name,
       email: email,
       password: pass,
@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           IconButton(
             tooltip: isDark ? 'Switch to light' : 'Switch to dark',
             icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode_outlined),
-            onPressed: () => themeProv.toogle(),
+            onPressed: () => themeProv.toggle(),
           )
         ],
       ),

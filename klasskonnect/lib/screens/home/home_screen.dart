@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   final String userName;
-
   const HomeScreen({super.key, required this.userName});
 
   @override
@@ -16,9 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: theme.brightness == Brightness.light
-          ? Colors.blueGrey[45]
-          : null,
+      backgroundColor: theme.brightness == Brightness.light ? Colors.grey[100] : null,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -33,10 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                'Find your classes, lectures, and updates below',
-                style: TextStyle(color: Colors.grey[600]),
-              ),
+              Text('Find your classes, lectures, and updates below',
+                  style: TextStyle(color: Colors.grey[600])),
               const SizedBox(height: 16),
 
               TextField(
@@ -46,37 +41,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   prefixIcon: const Icon(Icons.search),
                   filled: true,
                   fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
                 ),
                 onChanged: (q) {
-                  // TODO: implement the search filter
+                  // TODO: implement search filter
                 },
               ),
               const SizedBox(height: 20),
 
-              _sectionTitle('Upcomming lectures', theme),
-              _lectureCard(
-                'Intro to Flutter',
-                'Oct 20, 2025 - 10:00 AM',
-                'Mr. Sharma',
-              ),
-              _lectureCard(
-                'Advanced Dart',
-                'Oct 22, 2025 - 2:00 PM',
-                'Ms. Rai',
-              ),
+              _sectionTitle('Upcoming Lectures', theme),
+              _lectureCard('Intro to Flutter', 'Oct 20, 2025 - 10:00 AM', 'Mr. Sharma'),
+              _lectureCard('Advanced Dart', 'Oct 22, 2025 - 2:00 PM', 'Ms. Rai'),
               const SizedBox(height: 20),
 
               _sectionTitle('Recent Posts', theme),
               _postCard('Exam schedule released', 'Admin', '2 hours ago'),
-              _postCard(
-                'New lecture materials added',
-                'Prof. Adhikari',
-                'Yesterday',
-              ),
+              _postCard('New lecture materials added', 'Prof. Adhikari', 'Yesterday'),
             ],
           ),
         ),
@@ -85,15 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _sectionTitle(String title, ThemeData theme) => Padding(
-    padding: const EdgeInsets.only(bottom: 8),
-    child: Text(
-      title,
-      style: theme.textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.bold,
-        color: theme.colorScheme.primary,
-      ),
-    ),
-  );
+        padding: const EdgeInsets.only(bottom: 8),
+        child: Text(title, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, color: theme.colorScheme.primary)),
+      );
 
   Widget _lectureCard(String title, String date, String by) => Container(
         margin: const EdgeInsets.only(bottom: 12),

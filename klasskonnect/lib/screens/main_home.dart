@@ -41,7 +41,7 @@ class _MainHomeState extends State<MainHome> {
 
   void _logout() {
     // For local mock, simply return to sign in screen
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const SigninScreen()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const SignInScreen()));
   }
 
   @override
@@ -57,7 +57,7 @@ class _MainHomeState extends State<MainHome> {
         actions: [
           IconButton(
             icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode_outlined),
-            onPressed: () => themeProv.toogle(),
+            onPressed: () => themeProv.toggle(),
             tooltip: isDark ? 'Switch to light' : 'Switch to dark',
           ),
           IconButton(

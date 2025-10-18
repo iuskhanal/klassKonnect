@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:klasskonnect/main.dart';
 import 'package:provider/provider.dart';
+import '../../main.dart';
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _emailCtrl = TextEditingController();
-  final _fromKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
-  void _send(){
-    if (!_fromKey.currentState!.validate()) return ;
-
+  void _send() {
+    if (!_formKey.currentState!.validate()) return;
+    // Mock behaviour
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Recovary Link sent to ${_emailCtrl.text.trim()}'))
+      SnackBar(content: Text('Recovery link sent to ${_emailCtrl.text.trim()}')),
     );
+    // Optionally go back
+    // Navigator.pop(context);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,40 +31,42 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Password Recovary'),
+        title: const Text('Password Recovery'),
         actions: [
           IconButton(
-            tooltip: isDark ? "Switch to light mode" : "Swich to Dark mode",
-             icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode_outlined),
-            onPressed: () => themeProv.toogle(),
-            )
+            tooltip: isDark ? 'Switch to light' : 'Switch to dark',
+            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode_outlined),
+            onPressed: () => themeProv.toggle(),
+          )
         ],
       ),
-      
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              const SizedBox(height: 32,),
+              const SizedBox(height: 12),
+              const Text(
+                "Enter the Email address associated with your KlassKonnect account\nWe’ll send you a link to reset your password",
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
               Form(
-                key: _fromKey,
+                key: _formKey,
                 child: TextFormField(
                   controller: _emailCtrl,
                   decoration: const InputDecoration(
                     labelText: 'Email Address',
                     border: OutlineInputBorder(),
                   ),
-                   validator: (v) {
+                  validator: (v) {
                     if (v == null || v.trim().isEmpty) return 'Enter email';
                     if (!_emailRegex.hasMatch(v.trim())) return 'Enter valid email';
                     return null;
                   },
                 ),
               ),
-
-              const SizedBox(height: 30,),
-
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _send,
                 style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(50)),
@@ -77,11 +80,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 },
                 child: const Text('Need more help? Contact Support'),
               ),
-          
             ],
           ),
         ),
-
       ),
     );
   }

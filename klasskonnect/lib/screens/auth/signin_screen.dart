@@ -1,53 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:klasskonnect/main.dart';
-import 'package:klasskonnect/screens/main_home.dart';
 import 'package:provider/provider.dart';
-
-import '../main_home.dart';
 import '../../main.dart';
+import '../main_home.dart';
 import 'signup_screen.dart';
 import 'forget_password_screen.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
-  final _fromKey = GlobalKey<FormState>();
+class _SignInScreenState extends State<SignInScreen> {
+  final _formKey = GlobalKey<FormState>();
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
   String? _role;
   bool _obscure = true;
 
-  // Email & password regexas
+  // Email & password regexes
   final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  // 6-15 chars, at least 1 uppercase, 1 digit, 1 special char
   final _passRegex = RegExp(r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{6,15}$');
-  // 6-15 chars, at least 1 uppercase, 1 special char and  1 digit
 
   void _trySignIn() {
-    if (!_fromKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) return;
 
     final email = _emailCtrl.text.trim();
-    final password = _passCtrl.text.trim();
-    final user = AuthServices.login(email: email, password: password);
+    final password = _passCtrl.text;
+    final user = AuthService.login(email: email, password: password);
 
     if (user == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Invalid credentials or user not found")),
+        const SnackBar(content: Text('Invalid credentials or user not found')),
       );
       return;
     }
 
     final displayName = (user['name'] ?? '').isNotEmpty
         ? user['name']!
-        : email.split("@").first;
+        : email.split('@').first;
 
+    // Go to MainHome, passing the user name
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => MainHome(userName: displayName)),
+      MaterialPageRoute(
+        builder: (_) => MainHome(userName: displayName),
+      ),
     );
   }
 
@@ -58,32 +58,30 @@ class _SigninScreenState extends State<SigninScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign In"),
+        title: const Text('Sign In'),
         actions: [
+          // Theme toggle global
           IconButton(
             tooltip: isDark ? 'Switch to light' : 'Switch to dark',
             icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode_outlined),
-            onPressed: () => themeProv.toogle(),
-          ),
+            onPressed: () => themeProv.toggle(),
+          )
         ],
       ),
-
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-
           child: Column(
             children: [
               const SizedBox(height: 8),
               Text(
                 'KlassKonnect',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
               ),
               const SizedBox(height: 8),
-
               const Text(
                 'Connect, Learn, Grow',
                 style: TextStyle(fontStyle: FontStyle.italic),
@@ -91,7 +89,7 @@ class _SigninScreenState extends State<SigninScreen> {
               const SizedBox(height: 20),
 
               Form(
-                key: _fromKey,
+                key: _formKey,
                 child: Column(
                   children: [
                     // Email
@@ -115,7 +113,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     const SizedBox(height: 16),
 
-                    // PassWord
+                    // Password
                     TextFormField(
                       controller: _passCtrl,
                       obscureText: _obscure,
@@ -124,48 +122,36 @@ class _SigninScreenState extends State<SigninScreen> {
                         prefixIcon: const Icon(Icons.lock_outline),
                         border: const OutlineInputBorder(),
                         suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscure ? Icons.visibility_off : Icons.visibility,
-                          ),
-                          onPressed: () => setState(() {
-                            _obscure = !_obscure;
-                          }),
+                          icon:
+                              Icon(_obscure ? Icons.visibility_off : Icons.visibility),
+                          onPressed: () => setState(() => _obscure = !_obscure),
                         ),
                       ),
                       validator: (v) {
-                        if (v == null || v.isEmpty)
-                          return 'Please Enter password';
+                        if (v == null || v.isEmpty) return 'Please enter password';
                         if (!_passRegex.hasMatch(v)) {
-                          return 'Password should have : 6-15 chars, 1 upercase, 1 digits, 1 special characters';
+                          return 'Password: 6–15 chars, 1 uppercase, 1 number, 1 special';
                         }
                         return null;
                       },
                     ),
+                    const SizedBox(height: 16),
 
                     // Role
                     DropdownButtonFormField<String>(
                       initialValue: _role,
                       decoration: const InputDecoration(
-                        labelText: 'Who are you ?',
+                        labelText: 'Who are you?',
                         prefixIcon: Icon(Icons.account_circle_outlined),
                         border: OutlineInputBorder(),
                       ),
                       items: const [
-                        DropdownMenuItem(
-                          value: 'Student',
-                          child: Text('Student'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Teacher',
-                          child: Text('Teacher'),
-                        ),
+                        DropdownMenuItem(value: 'Student', child: Text('Student')),
+                        DropdownMenuItem(value: 'Teacher', child: Text('Teacher')),
                         DropdownMenuItem(value: 'Admin', child: Text('Admin')),
                       ],
-                      onChanged: (v) => setState(() {
-                        _role = v;
-                      }),
-                      validator: (v) =>
-                          v == null ? 'Please choose a role' : null,
+                      onChanged: (v) => setState(() => _role = v),
+                      validator: (v) => v == null ? 'Please choose a role' : null,
                     ),
                     const SizedBox(height: 24),
 
@@ -177,20 +163,16 @@ class _SigninScreenState extends State<SigninScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text('Sign in'),
+                      child: const Text('Sign In'),
                     ),
-                    const SizedBox(height: 12),
 
+                    const SizedBox(height: 12),
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ForgetPasswordScreen(),
-                          ),
-                        ),
-                        child: const Text('Forgot Password ?'),
+                        onPressed: () =>
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => const ForgotPasswordScreen())),
+                        child: const Text('Forgot Password?'),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -198,25 +180,20 @@ class _SigninScreenState extends State<SigninScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?"),
+                        const Text("Don’t have an account? "),
                         GestureDetector(
-                          onTap: ()=> 
-                          Navigator.push(
-                            context,
-                           MaterialPageRoute(
-                            builder: (_) => const SignUpScreen()
-                            )
-                          ),
+                          onTap: () =>
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => const SignUpScreen())),
                           child: Text(
-                            ' Sign Up',
+                            'Sign Up',
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.bold
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
