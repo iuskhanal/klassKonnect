@@ -11,7 +11,8 @@ import 'home/profile_screen.dart';
 import '../main.dart';
 
 class MainHome extends StatefulWidget {
-  const MainHome({super.key,});
+  final String userName;
+  const MainHome({super.key, required this.userName});
 
   @override
   State<MainHome> createState() => _MainHomeState();
