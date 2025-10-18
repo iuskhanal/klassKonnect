@@ -3,6 +3,11 @@ import 'package:klasskonnect/main.dart';
 import 'package:klasskonnect/screens/main_home.dart';
 import 'package:provider/provider.dart';
 
+import '../main_home.dart';
+import '../../main.dart';
+import 'signup_screen.dart';
+import 'forget_password_screen.dart';
+
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
 
@@ -127,14 +132,91 @@ class _SigninScreenState extends State<SigninScreen> {
                           }),
                         ),
                       ),
-                      validator: (v){
-                        if (v == null || v.isEmpty) return 'Please Enter password';
-                        if(!_passRegex.hasMatch(v)){
+                      validator: (v) {
+                        if (v == null || v.isEmpty)
+                          return 'Please Enter password';
+                        if (!_passRegex.hasMatch(v)) {
                           return 'Password should have : 6-15 chars, 1 upercase, 1 digits, 1 special characters';
                         }
                         return null;
                       },
                     ),
+
+                    // Role
+                    DropdownButtonFormField<String>(
+                      initialValue: _role,
+                      decoration: const InputDecoration(
+                        labelText: 'Who are you ?',
+                        prefixIcon: Icon(Icons.account_circle_outlined),
+                        border: OutlineInputBorder(),
+                      ),
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'Student',
+                          child: Text('Student'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Teacher',
+                          child: Text('Teacher'),
+                        ),
+                        DropdownMenuItem(value: 'Admin', child: Text('Admin')),
+                      ],
+                      onChanged: (v) => setState(() {
+                        _role = v;
+                      }),
+                      validator: (v) =>
+                          v == null ? 'Please choose a role' : null,
+                    ),
+                    const SizedBox(height: 24),
+
+                    ElevatedButton(
+                      onPressed: _trySignIn,
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text('Sign in'),
+                    ),
+                    const SizedBox(height: 12),
+
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ForgetPasswordScreen(),
+                          ),
+                        ),
+                        child: const Text('Forgot Password ?'),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Don't have an account?"),
+                        GestureDetector(
+                          onTap: ()=> 
+                          Navigator.push(
+                            context,
+                           MaterialPageRoute(
+                            builder: (_) => const SignupScreen()
+                            )
+                          ),
+                          child: Text(
+                            ' Sign Up',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),
