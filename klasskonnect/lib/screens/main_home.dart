@@ -34,7 +34,53 @@ class _MainHomeState extends State<MainHome> {
     ];
   }
 
+  void _onTap(int index){
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _openCreatePost(){
+    Navigator.push(context, MaterialPageRoute(
+      builder: (_)
+      => const PostCreationScreen(),
+    )
+    );
+  }
+
+  void _logout(){
+    Navigator.pushReplacement(context, MaterialPageRoute(
+      builder: (_)=>
+      const SigninScreen(),
+      ),
+      );
+  }
+
+  @override
+
   Widget build(BuildContext context) {
-    return Container();
+    final themeProv = Provider.of<ThemeProvider>(context);
+    final isDark = themeProv.isDark;
+
+    bool showFab = _selectedIndex == 0 || _selectedIndex == 2;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('KlassKonnect - ${widget.userName}'),
+        actions: [
+          IconButton(
+             icon: Icon(
+              isDark ? Icons.light_mode : Icons.dark_mode_outlined
+              ),
+             onPressed: () => themeProv.toogle(),
+             tooltip: isDark ? 'Switch to light' : 'Switch to dark',
+             ),
+             IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: _logout, 
+              )
+        ],
+      ),
+    );
   }
 }
