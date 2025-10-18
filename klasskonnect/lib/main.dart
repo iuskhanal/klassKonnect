@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/login_screen.dart';
+
 
 void main() {
   runApp(const KlassKonnectApp());
@@ -23,7 +23,6 @@ class KlassKonnectApp extends StatelessWidget {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
-      home: const LoginScreen(),
     );
   }
 }
