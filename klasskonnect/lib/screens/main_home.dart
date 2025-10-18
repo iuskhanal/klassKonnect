@@ -7,6 +7,7 @@ import 'home/lectures_screen.dart';
 import 'home/post_creation_screen.dart';
 import 'home/post_screen.dart';
 import 'home/profile_screen.dart';
+import 'home/home_screen.dart';
 
 import '../main.dart';
 
@@ -19,7 +20,20 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
+  int _selectedIndex = 0;
+  late final List<Widget> _screens;
   @override
+
+  void initState(){
+    super.initState();
+    _screens = [
+      HomeScreen(userName: widget.userName),
+      const LecturesScreen(),
+      const PostScreen(),
+      ProfileScreen(userName:widget.userName)
+    ];
+  }
+
   Widget build(BuildContext context) {
     return Container();
   }
