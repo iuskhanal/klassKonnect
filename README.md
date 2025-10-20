@@ -134,8 +134,6 @@ This project is part of the Excelerate Internship Program and is intended for ac
 ---
 
 ⭐ *If you like our work, consider starring the repository!*
-.
-
 🚀 Week 2 Overview
 
 This week focused on transforming our Week 1 wireframes into functional UI screens and developing a working prototype of the KlassKonnect app using Flutter.
@@ -234,4 +232,6 @@ Developed by Team 19 — Excelerate Flutter Internship Program
 
 This project is part of the Excelerate Internship Program and is intended for academic and learning purposes only.
 
-⭐ If you like our work, consider starring the repository! add screenshots in this code where you have mentioned add screenshot in readme
+⭐ If you like our work, consider starring the repository!
+
+
