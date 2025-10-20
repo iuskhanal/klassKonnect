@@ -22,6 +22,8 @@ It allows teachers to post announcements and upload lecture materials while enab
 | **Emmanuel Kimeli** | Project Manager, Firebase Admin | kimeliemmanuel21@gmail.com |
 | **Aayush Khanal** | UI/UX Lead, Frontend Widget Designer | khanal.aayush.ak@gmail.com |
 | **Gaurika Gautam** | Project Scribe, API/Data Structuring Assistant | 24cse018@gweca.ac.in |
+| **FardeenKhan** |Core Developer, Testing & Debugging Assistant | fardeensrms59@gmail.com|
+
 
 ---
 
@@ -180,7 +182,7 @@ Deliverable	Description
 🎥 Demo Video	Short walkthrough demonstrating the working prototype.
 🖼️ Screenshots
 Login Screen	Home Screen	Program Listing	Program Details
-(Add Screenshot)	(Add Screenshot)	(Add Screenshot)	(Add Screenshot)
+(Each image is extracted from the Week 2 deliverable PDF and represents the respective UI screens.)
 🔗 Project Links
 
 📂 GitHub Repository: KlassKonnect
