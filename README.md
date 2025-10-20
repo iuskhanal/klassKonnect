@@ -118,6 +118,7 @@ KlassKonnect provides a centralized, trackable digital platform for structured a
 
 - 📂 **GitHub Repository:** [KlassKonnect](https://github.com/iuskhanal/klassKonnect)  
 - 🎨 **Figma Wireframes:** [View Design](https://www.figma.com/design/BAXormfAuMGwLZCHc6embK/KlassKonnect?node-id=0-1)
+- (https://www.youtube.com/shorts/ooBt0Q4k084)
 
 ---
 
