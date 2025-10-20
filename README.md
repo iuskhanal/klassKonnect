@@ -132,3 +132,104 @@ This project is part of the Excelerate Internship Program and is intended for ac
 ---
 
 ⭐ *If you like our work, consider starring the repository!*
+.
+
+🚀 Week 2 Overview
+
+This week focused on transforming our Week 1 wireframes into functional UI screens and developing a working prototype of the KlassKonnect app using Flutter.
+The goal was to establish basic navigation between key interfaces and ensure the layout, design, and branding align with the Figma prototype and sponsor requirements.
+
+👥 Team Members
+Name	Role	Email
+Saif Ullah	Team Lead, Quality Engineer, Core Developer	ksaif3365@gmail.com
+
+Rumman Khurram	Project Lead, Associate Core Developer	mechatronicsengineer929@gmail.com
+
+Emmanuel Kimeli	Project Manager, Firebase Admin	kimeliemmanuel21@gmail.com
+
+Aayush Khanal	UI/UX Lead, Frontend Widget Designer	khanal.aayush.ak@gmail.com
+
+Gaurika Gautam	Project Scribe, API/Data Structuring Assistant	24cse018@gweca.ac.in
+
+Fardeen Khan	Core Developer, Testing & Debugging Assistant	fardeensrms59@gmail.com
+🧠 Week 2 Objective
+
+Convert static wireframes into interactive Flutter UI screens.
+
+Develop four core pages with functional navigation:
+
+Login Screen
+
+Home Screen
+
+Program Listing Screen
+
+Program Details Screen
+
+Ensure responsive layout and alignment with design guidelines.
+
+Create a short demo video showcasing navigation and flow.
+
+🧩 Key Deliverables
+Deliverable	Description
+🔐 Login Screen	Allows users to log in and proceed to the home page.
+🏠 Home Screen	Displays key sections and navigation to other screens.
+📋 Program Listing	Lists programs available for the student or teacher role.
+📖 Program Details	Shows complete information about the selected program.
+🔄 Navigation Flow	Smooth transition between all screens implemented in Flutter.
+🎥 Demo Video	Short walkthrough demonstrating the working prototype.
+🖼️ Screenshots
+Login Screen	Home Screen	Program Listing	Program Details
+(Add Screenshot)	(Add Screenshot)	(Add Screenshot)	(Add Screenshot)
+🔗 Project Links
+
+📂 GitHub Repository: KlassKonnect
+
+🎨 Figma Prototype: View Design
+
+🎥 Demo Video: Watch on YouTube
+
+⚙️ Technology Stack
+Component	Technology
+Frontend	Flutter (Dart)
+Design	Figma
+Navigation	Flutter Navigator()
+Repository	Git & GitHub
+Video Editing	YouTube Shorts Showcase
+🧭 App Navigation Flow
+
+Teacher / Student
+
+Login → Home Screen → Program Listing → Program Details → Back to Home
+
+All screens are interconnected with basic navigation functions, ensuring a smooth prototype demonstration.
+
+🧠 Learning Outcomes
+
+By completing Week 2, the team:
+
+Converted static wireframes into fully functional Flutter UI pages.
+
+Practiced implementing multi-screen navigation in Flutter.
+
+Strengthened understanding of UI hierarchy and responsive design.
+
+Improved collaboration through GitHub version control and Figma alignment.
+
+🧾 Project Links
+
+📂 GitHub Repository: KlassKonnect
+
+🎨 Figma Prototype: View Design
+
+🎥 Demo Video: Watch Demo
+
+🧑‍💻 Author Credits
+
+Developed by Team 19 — Excelerate Flutter Internship Program
+
+📝 License
+
+This project is part of the Excelerate Internship Program and is intended for academic and learning purposes only.
+
+⭐ If you like our work, consider starring the repository! add screenshots in this code where you have mentioned add screenshot in readme
