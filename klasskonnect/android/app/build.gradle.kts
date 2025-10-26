@@ -1,44 +1,32 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("org.jetbrains.kotlin.android") // 
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// ...existing code...
 android {
     namespace = "com.example.klasskonnect"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
+    // Read Flutter-generated properties safely in Kotlin DSL
+    val flutterCompileSdkVersion = (project.property("flutter.compileSdkVersion") as String).toInt()
+    val flutterNdkVersion = project.property("flutter.ndkVersion") as String
+    val flutterMinSdkVersion = (project.property("flutter.minSdkVersion") as String).toInt()
+    val flutterTargetSdkVersion = (project.property("flutter.targetSdkVersion") as String).toInt()
+    val flutterVersionCode = (project.property("flutter.versionCode") as String).toInt()
+    val flutterVersionName = project.property("flutter.versionName") as String
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
+    compileSdk = flutterCompileSdkVersion
+    ndkVersion = flutterNdkVersion
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.klasskonnect"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        minSdk = flutterMinSdkVersion
+        targetSdk = flutterTargetSdkVersion
+        versionCode = flutterVersionCode
+        versionName = flutterVersionName
+        multiDexEnabled = true // ✅ prevents 64k method limit issues
     }
 
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
-        }
-    }
-}
-
-flutter {
-    source = "../.."
+    // ...existing code...
 }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../screens/auth/signin_screen.dart'; // for logout redirect
+import '../screens/auth/signin_screen.dart';
 import 'home/home_screen.dart';
 import 'home/lectures_screen.dart';
 import 'home/post_creation_screen.dart';
 import 'home/post_screen.dart';
 import 'home/profile_screen.dart';
-import '../main.dart';
+import '../main.dart'; // for ThemeProvider
 
 class MainHome extends StatefulWidget {
   final String userName;
@@ -36,12 +37,17 @@ class _MainHomeState extends State<MainHome> {
   }
 
   void _openCreatePost() {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => const PostCreationScreen()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const PostCreationScreen()),
+    );
   }
 
   void _logout() {
-    // For local mock, simply return to sign in screen
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const SignInScreen()));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const SignInScreen()),
+    );
   }
 
   @override
@@ -49,7 +55,7 @@ class _MainHomeState extends State<MainHome> {
     final themeProv = Provider.of<ThemeProvider>(context);
     final isDark = themeProv.isDark;
 
-    bool showFab = _selectedIndex == 0 || _selectedIndex == 2;
+    final bool showFab = _selectedIndex == 0 || _selectedIndex == 2;
 
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +63,7 @@ class _MainHomeState extends State<MainHome> {
         actions: [
           IconButton(
             icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode_outlined),
-            onPressed: () => themeProv.toggle(),
+            onPressed: themeProv.toggle,
             tooltip: isDark ? 'Switch to light' : 'Switch to dark',
           ),
           IconButton(
@@ -75,22 +81,18 @@ class _MainHomeState extends State<MainHome> {
               child: const Icon(Icons.add),
             )
           : null,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 6,
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onTap,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Lectures'),
-            BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Posts'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
-          selectedItemColor: Theme.of(context).colorScheme.primary,
-          unselectedItemColor: Colors.grey,
-          type: BottomNavigationBarType.fixed,
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onTap,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Lectures'),
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Posts'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }

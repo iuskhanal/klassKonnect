@@ -9,7 +9,9 @@ void main() {
   runApp(const KlassKonnectApp());
 }
 
-/// Simple Theme provider (global)
+/// ----------------------
+/// THEME PROVIDER
+/// ----------------------
 class ThemeProvider extends ChangeNotifier {
   ThemeMode _mode = ThemeMode.light;
   ThemeMode get mode => _mode;
@@ -27,7 +29,9 @@ class ThemeProvider extends ChangeNotifier {
   }
 }
 
-/// Very small in-memory auth service to mock registration/login
+/// ----------------------
+/// MOCK AUTH SERVICE
+/// ----------------------
 class AuthService {
   // email -> {name, email, password, role}
   static final Map<String, Map<String, String>> _users = {};
@@ -40,6 +44,7 @@ class AuthService {
   }) {
     final key = email.toLowerCase();
     if (_users.containsKey(key)) return false;
+
     _users[key] = {
       'name': name,
       'email': email,
@@ -56,6 +61,7 @@ class AuthService {
     final key = email.toLowerCase();
     final user = _users[key];
     if (user == null) return null;
+
     if (user['password'] == password) {
       return {
         'name': user['name'] ?? '',
@@ -67,35 +73,40 @@ class AuthService {
   }
 }
 
+/// ----------------------
+/// ROOT APP
+/// ----------------------
 class KlassKonnectApp extends StatelessWidget {
   const KlassKonnectApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ThemeProvider>(
+    return ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
       child: Consumer<ThemeProvider>(
-        builder: (_, themeProvider, __) {
+        builder: (context, themeProvider, _) {
           return MaterialApp(
             title: 'KlassKonnect',
             debugShowCheckedModeBanner: false,
             themeMode: themeProvider.mode,
             theme: ThemeData(
               brightness: Brightness.light,
-              primarySwatch: Colors.blue,
+              colorSchemeSeed: Colors.blue,
               useMaterial3: true,
             ),
             darkTheme: ThemeData(
               brightness: Brightness.dark,
-              primarySwatch: Colors.blue,
+              colorSchemeSeed: Colors.blue,
               useMaterial3: true,
             ),
+            // initial screen
             initialRoute: '/signin',
+
             routes: {
-              '/signin': (ctx) => const SignInScreen(),
-              '/signup': (ctx) => const SignUpScreen(),
-              '/forgot': (ctx) => const ForgotPasswordScreen(),
-              '/main_home': (ctx) => const MainHome(userName: 'User'),
+              '/signin': (_) => const SignInScreen(),
+              '/signup': (_) => const SignUpScreen(),
+              '/forgot': (_) => const ForgotPasswordScreen(),
+              '/main_home': (_) => const MainHome(userName: 'User'),
             },
           );
         },
