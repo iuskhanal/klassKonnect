@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../screens/auth/signin_screen.dart';
 import 'home/home_screen.dart';
@@ -27,7 +26,7 @@ class _MainHomeState extends State<MainHome> {
     _screens = [
       HomeScreen(userName: widget.userName),
       const LecturesScreen(),
-      const PostScreen(),
+      const PostsScreen(),
       ProfileScreen(userName: widget.userName),
     ];
   }

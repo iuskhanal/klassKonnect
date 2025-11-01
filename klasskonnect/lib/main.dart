@@ -4,6 +4,7 @@ import 'screens/auth/signin_screen.dart';
 import 'screens/auth/signup_screen.dart';
 import 'screens/auth/forget_password_screen.dart';
 import 'screens/main_home.dart';
+import 'screens/home/post_screen.dart';
 
 void main() {
   runApp(const KlassKonnectApp());
@@ -71,6 +72,14 @@ class AuthService {
     }
     return null;
   }
+
+  static Map<String, Map <String, String>> allUsers = {
+    "user1" : {
+      "name" : "Test User",
+      "email" : "test@example.com",
+      "role" : "Student",
+    }
+  };
 }
 
 /// ----------------------
@@ -107,6 +116,7 @@ class KlassKonnectApp extends StatelessWidget {
               '/signup': (_) => const SignUpScreen(),
               '/forgot': (_) => const ForgotPasswordScreen(),
               '/main_home': (_) => const MainHome(userName: 'User'),
+              '/posts' : (_) => const  PostsScreen(),
             },
           );
         },
